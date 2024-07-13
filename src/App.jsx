@@ -53,6 +53,21 @@ function App() {
 
   },[])
 
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      if (event.key === 'Enter') { // Check if Enter key is pressed
+        handleAddTodos(todoValue); // Call your existing function
+        setTodoValue(''); 
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyPress);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyPress);
+    };
+  }, [todoValue]);
+
   
  
   return (
